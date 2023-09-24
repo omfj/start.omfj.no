@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { searchEngines } from '$lib/search-engines';
 	import { shortcuts } from '$lib/shortcuts';
-	import { format } from 'date-fns';
+	import { format, getWeek } from 'date-fns';
 	import { onMount } from 'svelte';
 
 	let searchQuery = '';
 	let date = new Date();
+	let week = getWeek(date);
 
 	onMount(() => {
 		const interval = setInterval(() => {
@@ -16,6 +18,8 @@
 			clearInterval(interval);
 		};
 	});
+
+	let selectedEngine = 'google';
 </script>
 
 <svelte:head>
@@ -23,9 +27,17 @@
 </svelte:head>
 
 <main class="max-w-3xl w-full mx-auto space-y-16 py-24 px-4">
-	<div class="space-y-4 font-serif text-3xl flex items-center justify-between">
-		<p>{format(date, 'yyy/mm/dd')}</p>
-		<p>{format(date, 'HH:mm:ss')}</p>
+	<div class="space-y-4 flex flex-col">
+		<div class="font-mono text-center">
+			<p>week: {week}</p>
+		</div>
+
+		<div class="flex items-center justify-between text-4xl font-serif">
+			<p>{format(date, 'HH:mm:ss')}</p>
+			<p>
+				{format(date, 'MMM dd')}
+			</p>
+		</div>
 	</div>
 
 	<div class="space-y-4">
@@ -33,7 +45,7 @@
 			<h1 class="text-4xl font-serif">Search</h1>
 		</div>
 
-		<form method="post" use:enhance>
+		<form method="post" use:enhance class="space-y-1">
 			<div class="relative">
 				<input
 					bind:value={searchQuery}
@@ -48,6 +60,27 @@
 				>
 					Search
 				</button>
+			</div>
+			<div class="flex items-center gap-3">
+				{#each searchEngines as engine}
+					<div>
+						<input
+							type="radio"
+							name="engine"
+							id={engine.id}
+							value={engine.id}
+							checked={selectedEngine == engine.id}
+							on:change={(e) => (selectedEngine = e.currentTarget.value)}
+							hidden
+						/>
+						<label
+							for={engine.id}
+							class="cursor-pointer {selectedEngine === engine.id
+								? 'underline text-grey-200'
+								: 'text-grey-500'}">{engine.title}</label
+						>
+					</div>
+				{/each}
 			</div>
 		</form>
 	</div>
