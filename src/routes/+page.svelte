@@ -18,6 +18,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>omfj | Start</title>
+</svelte:head>
+
 <main class="max-w-3xl w-full mx-auto space-y-16 py-24 px-4">
 	<div class="space-y-4 font-serif text-3xl flex items-center justify-between">
 		<p>{format(date, 'yyy/mm/dd')}</p>
