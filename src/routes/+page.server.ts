@@ -1,6 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
-import { searchEngines } from '$lib/search-engines';
+import { searchEngines } from '$lib/constants';
 
 export const actions = {
 	default: async ({ request }) => {
@@ -22,7 +22,7 @@ export const actions = {
 			}
 		}
 
-		throw fail(400, {
+		return fail(400, {
 			message: 'Bad request'
 		});
 	}
