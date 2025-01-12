@@ -2,7 +2,6 @@
 	import Date from '$lib/components/Date.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import Shortcuts from '$lib/components/Shortcuts.svelte';
-	import Habits from '$lib/components/Habits.svelte';
 </script>
 
 <svelte:head>
@@ -13,5 +12,4 @@
 	<Date />
 	<Search />
 	<Shortcuts />
-	<Habits />
 </main>

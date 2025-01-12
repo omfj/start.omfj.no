@@ -48,34 +48,3 @@ export const shortcuts = [
 		url: 'https://nrk.no'
 	}
 ] as const;
-
-export const habits = [
-	{
-		title: 'Plan',
-		description: 'Create a TODO list for the day'
-	},
-	{
-		title: 'Vitamins',
-		description: 'Take your vitamins'
-	},
-	{
-		title: 'Meditate',
-		description: 'Meditate for a few minutes'
-	},
-	{
-		title: 'Read',
-		description: 'Read for 20 minutes'
-	},
-	{
-		title: 'Water',
-		description: 'Drink some water. At least 1 glass'
-	},
-	{
-		title: 'Exercise',
-		description: 'Lift some weights for a few minutes'
-	},
-	{
-		title: 'Journal',
-		description: 'Write in your journal'
-	}
-] as const;
