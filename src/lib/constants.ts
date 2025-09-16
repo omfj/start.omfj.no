@@ -1,13 +1,13 @@
 export const searchEngines = [
 	{
-		id: 'google',
-		title: 'Google',
-		searchUrl: 'https://google.com/search?q='
-	},
-	{
 		id: 'duckduckgo',
 		title: 'DuckDuckGo',
 		searchUrl: 'https://duckduckgo.com/?q='
+	},
+	{
+		id: 'google',
+		title: 'Google',
+		searchUrl: 'https://google.com/search?q='
 	},
 	{
 		id: 'bing',

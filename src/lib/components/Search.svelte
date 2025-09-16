@@ -4,7 +4,7 @@
 	import type { ChangeEventHandler } from 'svelte/elements';
 
 	let searchQuery = $state('');
-	let selectedEngine = $state<SearchEngine>('google');
+	let selectedEngine = $state<SearchEngine>('duckduckgo');
 
 	const handleEngineChange: ChangeEventHandler<HTMLInputElement> = (e) => {
 		const engine = e.currentTarget.value;
@@ -35,7 +35,7 @@
 			</button>
 		</div>
 		<div class="flex items-center gap-3">
-			{#each searchEngines as engine}
+			{#each searchEngines as engine (engine.id)}
 				<div>
 					<input
 						type="radio"
