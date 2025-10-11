@@ -4,20 +4,21 @@
 
 <div class="space-y-4">
 	<div class="space-y-2">
-		<h1 class="font-serif text-4xl">Shortcuts</h1>
+		<h1 class="font-mono text-3xl">Shortcuts</h1>
 		<p class="text-neutral-300">A list of shortcuts I use on a daily basis.</p>
 	</div>
 
-	<ul class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+	<ul class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 		{#each shortcuts as shortcut (shortcut.title)}
-			<!-- eslint-disable svelte/no-navigation-without-resolve -->
-			<a href={shortcut.url}>
-				<li
-					class="group space-y-2 rounded-lg border border-gray-900 p-4 transition-colors duration-200 ease-in-out first-letter:uppercase hover:bg-gray-900"
+			<li class="border-2">
+				<!-- eslint-disable svelte/no-navigation-without-resolve -->
+				<a
+					href={shortcut.url}
+					class="flex h-full flex-col justify-between gap-2 bg-transparent p-4 transition-colors duration-200 ease-in-out hover:bg-[#9c9c9c] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
 				>
-					<h1 class="text-2xl font-light">{shortcut.title}</h1>
-				</li>
-			</a>
+					<h1 class="text-xl font-light first-letter:uppercase">{shortcut.title}</h1>
+				</a>
+			</li>
 		{/each}
 	</ul>
 </div>

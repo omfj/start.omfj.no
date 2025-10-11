@@ -8,7 +8,7 @@
 	<title>omfj | Start</title>
 </svelte:head>
 
-<main class="mx-auto w-full max-w-3xl space-y-16 px-4 py-24">
+<main class="mx-auto w-full max-w-3xl space-y-12 px-6 py-16">
 	<Date />
 	<Search />
 	<Shortcuts />

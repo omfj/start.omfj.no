@@ -23,7 +23,7 @@
 		<p>week: {week}</p>
 	</div>
 
-	<div class="flex items-center justify-between font-serif text-4xl">
+	<div class="flex items-center justify-between font-mono text-3xl">
 		<p>{time}</p>
 		<p>{ddate}</p>
 	</div>

@@ -24,26 +24,26 @@
 
 <div class="space-y-4">
 	<div>
-		<h1 class="font-serif text-4xl">Search</h1>
+		<h1 class="font-mono text-3xl">Search</h1>
 	</div>
 
-	<form {onsubmit} class="space-y-1">
-		<div class="relative">
+	<form {onsubmit} class="space-y-3">
+		<div class="flex">
 			<input
 				bind:value={searchQuery}
 				type="search"
 				name="q"
-				class="w-full rounded-lg border border-gray-900 bg-transparent px-4 py-2 text-xl focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
+				class="flex-1 border-2 border-r-0 bg-transparent px-4 py-3 text-base focus:border-gray-500 focus:ring-2 focus:ring-gray-500 focus:outline-none"
 				placeholder="Search"
 			/>
 			<button
 				type="submit"
-				class="bg-dark-300 absolute inset-y-0 right-0 rounded-e-lg px-4 py-2 text-white"
+				class="border-2 border-l-0 bg-gray-700 px-6 py-3 text-base text-white transition-colors duration-200 hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
 			>
 				Search
 			</button>
 		</div>
-		<div class="flex items-center gap-3">
+		<div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm uppercase tracking-wide">
 			{#each searchEngines as engine (engine.id)}
 				<div>
 					<input
