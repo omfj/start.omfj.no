@@ -9,7 +9,8 @@
 	</div>
 
 	<ul class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-		{#each shortcuts as shortcut}
+		{#each shortcuts as shortcut (shortcut.title)}
+			<!-- eslint-disable svelte/no-navigation-without-resolve -->
 			<a href={shortcut.url}>
 				<li
 					class="group space-y-2 rounded-lg border border-gray-900 p-4 transition-colors duration-200 ease-in-out first-letter:uppercase hover:bg-gray-900"

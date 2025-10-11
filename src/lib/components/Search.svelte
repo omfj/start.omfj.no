@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import { isValidSearchEngine, searchEngines, type SearchEngine } from '$lib/constants';
+	import { buildSearchQuery } from '$lib/search';
 	import type { ChangeEventHandler } from 'svelte/elements';
 
 	let searchQuery = $state('');
@@ -11,6 +11,15 @@
 		if (!isValidSearchEngine(engine)) return;
 		selectedEngine = engine;
 	};
+
+	const onsubmit = (e: Event) => {
+		e.preventDefault();
+
+		if (!searchQuery.trim()) return;
+		const redirect = buildSearchQuery(selectedEngine, searchQuery);
+
+		window.location.href = redirect;
+	};
 </script>
 
 <div class="space-y-4">
@@ -18,13 +27,13 @@
 		<h1 class="font-serif text-4xl">Search</h1>
 	</div>
 
-	<form method="post" use:enhance class="space-y-1">
+	<form {onsubmit} class="space-y-1">
 		<div class="relative">
 			<input
 				bind:value={searchQuery}
 				type="search"
 				name="q"
-				class="w-full rounded-lg border border-gray-900 bg-transparent px-4 py-2 text-xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-600"
+				class="w-full rounded-lg border border-gray-900 bg-transparent px-4 py-2 text-xl focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
 				placeholder="Search"
 			/>
 			<button
