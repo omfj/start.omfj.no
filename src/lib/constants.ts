@@ -46,5 +46,17 @@ export const shortcuts = [
 	{
 		title: 'NRK',
 		url: 'https://nrk.no'
+	},
+	{
+		title: 'The Economist',
+		url: 'https://economist.com'
+	},
+	{
+		title: 'VG',
+		url: 'https://vg.no'
+	},
+	{
+		title: 'Advent of Code',
+		url: 'https://adventofcode.com'
 	}
 ] as const;
