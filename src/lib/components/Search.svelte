@@ -3,8 +3,13 @@
 	import { buildSearchQuery } from '$lib/search';
 	import type { ChangeEventHandler } from 'svelte/elements';
 
+	let searchElement = $state<HTMLInputElement | null>(null);
 	let searchQuery = $state('');
 	let selectedEngine = $state<SearchEngine>('duckduckgo');
+
+	$effect(() => {
+		searchElement?.focus();
+	});
 
 	const handleEngineChange: ChangeEventHandler<HTMLInputElement> = (e) => {
 		const engine = e.currentTarget.value;
@@ -25,6 +30,7 @@
 <form {onsubmit} class="space-y-2">
 	<div class="flex">
 		<input
+			bind:this={searchElement}
 			bind:value={searchQuery}
 			type="search"
 			name="q"
