@@ -24,8 +24,8 @@ export const isValidSearchEngine = (engine: string): engine is SearchEngine => {
 
 export const shortcuts = [
 	{
-		title: 'Fastmail',
-		url: 'https://fastmail.com'
+		title: 'Proton Mail',
+		url: 'https://mail.proton.me/u/3/inbox'
 	},
 	{
 		title: 'YouTube',
