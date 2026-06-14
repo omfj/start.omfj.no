@@ -14,8 +14,8 @@
 	{#each shortcuts as shortcut (shortcut.title)}
 		<li class="flex items-center gap-2">
 			<!-- eslint-disable svelte/no-navigation-without-resolve -->
-			<span class="font-mono text-xs text-gray-600">{shortcut.key}</span>
-			<a href={shortcut.url} class="text-gray-400 hover:text-gray-100 focus:outline-none">
+			<span class="font-mono text-xs muted">{shortcut.key}</span>
+			<a href={shortcut.url} class="muted hover-text focus-text focus:outline-none">
 				{shortcut.title}
 			</a>
 		</li>

@@ -35,7 +35,10 @@
 			type="search"
 			name="q"
 			autocomplete="off"
-			class="flex-1 border-b bg-transparent py-3 text-base focus:border-gray-500 focus:outline-none"
+			style="border-color: var(--border);"
+			class="flex-1 border-b bg-transparent py-3 text-base focus:outline-none"
+			onfocus={(e) => (e.currentTarget.style.borderColor = 'var(--border-focus)')}
+			onblur={(e) => (e.currentTarget.style.borderColor = 'var(--border)')}
 			placeholder="Search"
 		/>
 	</div>
@@ -54,8 +57,12 @@
 				/>
 				<label
 					for={engine.id}
-					class="cursor-pointer {selectedEngine === engine.id ? 'text-gray-300' : 'text-gray-600'}"
-					>{engine.title}</label
+					tabindex="0"
+					onkeydown={(e) =>
+						e.key === 'Enter' || e.key === ' ' ? (selectedEngine = engine.id) : null}
+					class="cursor-pointer focus:outline-none focus:underline {selectedEngine === engine.id
+						? 'active-text'
+						: 'muted'}">{engine.title}</label
 				>
 			</div>
 		{/each}

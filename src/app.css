@@ -1,5 +1,27 @@
 @import 'tailwindcss';
 
+:root {
+	--bg: #f9f9fb;
+	--fg: #111111;
+	--muted: #777777;
+	--border: #d0d0d0;
+	--border-focus: #555555;
+	--fg-active: #000000;
+	--fg-hover: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #0a0a0a;
+		--fg: #eeeeee;
+		--muted: #777777;
+		--border: #222222;
+		--border-focus: #cccccc;
+		--fg-active: #ffffff;
+		--fg-hover: #ffffff;
+	}
+}
+
 html,
 body {
 	margin: 0;
@@ -8,10 +30,23 @@ body {
 		'Liberation Mono', 'Courier New', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: #000000;
-	color: #eeeeee;
+	background-color: var(--bg);
+	color: var(--fg);
 }
 
 * {
-	border-color: #222;
+	border-color: var(--border);
+}
+
+.muted {
+	color: var(--muted);
+}
+
+.active-text {
+	color: var(--fg-active);
+}
+
+.hover-text:hover,
+.focus-text:focus {
+	color: var(--fg-hover);
 }

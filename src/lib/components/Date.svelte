@@ -22,9 +22,9 @@
 	<div class="font-mono text-5xl font-light tracking-tight">
 		{time}
 	</div>
-	<div class="flex items-center gap-3 font-mono text-base text-gray-400">
+	<div class="flex items-center gap-3 font-mono text-base muted">
 		<span>{ddate}</span>
-		<span class="text-gray-600">-</span>
+		<span class="muted">-</span>
 		<span>week {week}</span>
 	</div>
 </div>
