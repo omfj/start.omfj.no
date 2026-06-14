@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { isValidSearchEngine, searchEngines, type SearchEngine } from '$lib/constants';
+	import { searchEngines, type SearchEngine } from '$lib/constants';
 	import { buildSearchQuery } from '$lib/search';
-	import type { ChangeEventHandler } from 'svelte/elements';
 
 	let searchElement = $state<HTMLInputElement | null>(null);
 	let searchQuery = $state('');
@@ -10,12 +9,6 @@
 	$effect(() => {
 		searchElement?.focus();
 	});
-
-	const handleEngineChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-		const engine = e.currentTarget.value;
-		if (!isValidSearchEngine(engine)) return;
-		selectedEngine = engine;
-	};
 
 	const onsubmit = (e: Event) => {
 		e.preventDefault();
@@ -44,27 +37,13 @@
 	</div>
 	<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
 		{#each searchEngines as engine (engine.id)}
-			<div>
-				<input
-					type="radio"
-					name="engine"
-					class="hidden"
-					id={engine.id}
-					value={engine.id}
-					checked={selectedEngine == engine.id}
-					onchange={handleEngineChange}
-					hidden
-				/>
-				<label
-					for={engine.id}
-					tabindex="0"
-					onkeydown={(e) =>
-						e.key === 'Enter' || e.key === ' ' ? (selectedEngine = engine.id) : null}
-					class="cursor-pointer focus:outline-none focus:underline {selectedEngine === engine.id
-						? 'active-text'
-						: 'muted'}">{engine.title}</label
-				>
-			</div>
+			<button
+				type="button"
+				onclick={() => (selectedEngine = engine.id)}
+				class="cursor-pointer focus:outline-none focus:underline {selectedEngine === engine.id
+					? 'active-text'
+					: 'muted'}">{engine.title}</button
+			>
 		{/each}
 	</div>
 </form>
