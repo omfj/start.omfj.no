@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>omfj | Start</title>
+    <style>
+      :root {
+        --bg: #f9f9fb;
+        --fg: #111111;
+        --muted: #777777;
+        --border: #d0d0d0;
+        --border-focus: #555555;
+        --fg-active: #000000;
+        --fg-hover: #000000;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0a0a0a;
+          --fg: #eeeeee;
+          --muted: #777777;
+          --border: #222222;
+          --border-focus: #cccccc;
+          --fg-active: #ffffff;
+          --fg-hover: #ffffff;
+        }
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        font-family:
+          "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo,
+          Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: var(--bg);
+        color: var(--fg);
+      }
+
+      main {
+        margin: 0 auto;
+        display: flex;
+        min-height: 100vh;
+        width: 100%;
+        max-width: 48rem;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2.5rem;
+        padding: 3rem 2rem;
+      }
+
+      /* Date */
+      #date-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      #clock {
+        font-size: 3rem;
+        font-weight: 300;
+        letter-spacing: -0.025em;
+      }
+
+      #date-info {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1rem;
+        color: var(--muted);
+      }
+
+      /* Search */
+      #search-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      #search-input {
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--border);
+        padding: 0.75rem 0;
+        font-size: 1rem;
+        font-family: inherit;
+        color: var(--fg);
+        outline: none;
+      }
+
+      #search-input:focus {
+        border-bottom-color: var(--border-focus);
+      }
+
+      #engine-list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 0.75rem;
+        row-gap: 0.25rem;
+        font-size: 0.875rem;
+      }
+
+      .engine-btn {
+        background: none;
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        cursor: pointer;
+        color: var(--muted);
+        padding: 0;
+      }
+
+      .engine-btn:focus {
+        outline: none;
+        text-decoration: underline;
+      }
+
+      .engine-btn.active {
+        color: var(--fg-active);
+      }
+
+      /* Shortcuts */
+      #shortcuts-list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1.5rem;
+        row-gap: 0.5rem;
+        font-size: 1rem;
+      }
+
+      @media (min-width: 640px) {
+        #shortcuts-list {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .shortcut-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .shortcut-key {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+
+      .shortcut-link {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .shortcut-link:hover,
+      .shortcut-link:focus {
+        color: var(--fg-hover);
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id="date-section">
+        <div id="clock"></div>
+        <div id="date-info">
+          <span id="date-display"></span>
+          <span>-</span>
+          <span id="week-display"></span>
+        </div>
+      </div>
+
+      <form id="search-form">
+        <div>
+          <input
+            id="search-input"
+            type="search"
+            name="q"
+            autocomplete="off"
+            placeholder="Search"
+          />
+        </div>
+        <div id="engine-list"></div>
+      </form>
+
+      <ul id="shortcuts-list"></ul>
+    </main>
+
+    <script>
+      const searchEngines = [
+        {
+          id: "duckduckgo",
+          title: "DuckDuckGo",
+          searchUrl: "https://duckduckgo.com/?q=",
+        },
+        {
+          id: "google",
+          title: "Google",
+          searchUrl: "https://google.com/search?q=",
+        },
+        { id: "bing", title: "Bing", searchUrl: "https://bing.com/search?q=" },
+      ];
+
+      const shortcuts = [
+        {
+          title: "Proton Mail",
+          url: "https://mail.proton.me/u/3/inbox",
+          key: "1",
+        },
+        { title: "YouTube", url: "https://youtube.com", key: "2" },
+        { title: "reddit", url: "https://reddit.com", key: "3" },
+        { title: "GitHub", url: "https://github.com", key: "4" },
+        { title: "Hacker News", url: "https://news.ycombinator.com", key: "5" },
+        { title: "NRK", url: "https://nrk.no", key: "6" },
+        { title: "The Economist", url: "https://economist.com", key: "7" },
+        { title: "VG", url: "https://vg.no", key: "8" },
+        {
+          title: "FIFA Fantasy",
+          url: "https://play.fifa.com/fantasy/team",
+          key: "9",
+        },
+      ];
+
+      // Clock
+      const MONTHS = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+
+      function pad(n) {
+        return String(n).padStart(2, "0");
+      }
+
+      function getWeekNumber(d) {
+        const utc = new Date(
+          Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()),
+        );
+        utc.setUTCDate(utc.getUTCDate() + 4 - (utc.getUTCDay() || 7));
+        const yearStart = new Date(Date.UTC(utc.getUTCFullYear(), 0, 1));
+        return Math.ceil(((utc - yearStart) / 86400000 + 1) / 7);
+      }
+
+      function updateClock() {
+        const now = new Date();
+        document.getElementById("clock").textContent =
+          `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+        document.getElementById("date-display").textContent =
+          `${MONTHS[now.getMonth()]} ${pad(now.getDate())}`;
+        document.getElementById("week-display").textContent =
+          `week ${getWeekNumber(now)}`;
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // Search engines
+      let selectedEngine = "duckduckgo";
+      const engineList = document.getElementById("engine-list");
+
+      searchEngines.forEach((engine) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = engine.title;
+        btn.className =
+          "engine-btn" + (engine.id === selectedEngine ? " active" : "");
+        btn.addEventListener("click", () => {
+          selectedEngine = engine.id;
+          document
+            .querySelectorAll(".engine-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+        });
+        engineList.appendChild(btn);
+      });
+
+      const searchForm = document.getElementById("search-form");
+      const searchInput = document.getElementById("search-input");
+
+      searchInput.focus();
+
+      searchForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const query = searchInput.value.trim();
+        if (!query) return;
+        const engine = searchEngines.find((e) => e.id === selectedEngine);
+        window.location.href = engine.searchUrl + encodeURIComponent(query);
+      });
+
+      // Shortcuts
+      const shortcutsList = document.getElementById("shortcuts-list");
+      shortcuts.forEach((shortcut) => {
+        const li = document.createElement("li");
+        li.className = "shortcut-item";
+        const key = document.createElement("span");
+        key.className = "shortcut-key";
+        key.textContent = shortcut.key;
+        const a = document.createElement("a");
+        a.href = shortcut.url;
+        a.className = "shortcut-link";
+        a.textContent = shortcut.title;
+        li.append(key, a);
+        shortcutsList.appendChild(li);
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.target instanceof HTMLInputElement) return;
+        const shortcut = shortcuts.find((s) => s.key === e.key);
+        if (shortcut) window.location.href = shortcut.url;
+      });
+    </script>
+  </body>
+</html>

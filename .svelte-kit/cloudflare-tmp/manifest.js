@@ -1,0 +1,43 @@
+export const manifest = (() => {
+function __memo(fn) {
+	let value;
+	return () => value ??= (value = fn());
+}
+
+return {
+	appDir: "_app",
+	appPath: "_app",
+	assets: new Set([".assetsignore","android-chrome-192x192.png","android-chrome-512x512.png","apple-touch-icon.png","favicon-16x16.png","favicon-32x32.png","favicon.ico","robots.txt","site.webmanifest"]),
+	mimeTypes: {".png":"image/png",".txt":"text/plain",".webmanifest":"application/manifest+json"},
+	_: {
+		client: {start:"_app/immutable/entry/start.e4jrvq6O.js",app:"_app/immutable/entry/app.juHcsVz1.js",imports:["_app/immutable/entry/start.e4jrvq6O.js","_app/immutable/chunks/Cxhrx6te.js","_app/immutable/chunks/CMef_VGG.js","_app/immutable/entry/app.juHcsVz1.js","_app/immutable/chunks/CMef_VGG.js","_app/immutable/chunks/kNaey6uv.js","_app/immutable/chunks/xihTtKlq.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		nodes: [
+			__memo(() => import('../output/server/nodes/0.js')),
+			__memo(() => import('../output/server/nodes/1.js')),
+			__memo(() => import('../output/server/nodes/2.js'))
+		],
+		remotes: {
+			
+		},
+		routes: [
+			{
+				id: "/",
+				pattern: /^\/$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 2 },
+				endpoint: null
+			}
+		],
+		prerendered_routes: new Set([]),
+		matchers: async () => {
+			
+			return {  };
+		},
+		server_assets: {}
+	}
+}
+})();
+
+export const prerendered = new Set([]);
+
+export const base_path = "";
