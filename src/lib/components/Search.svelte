@@ -34,17 +34,12 @@
 			bind:value={searchQuery}
 			type="search"
 			name="q"
-			class="flex-1 border bg-transparent px-4 py-2 text-sm focus:border-gray-500 focus:outline-none"
+			autocomplete="off"
+			class="flex-1 border-b bg-transparent py-3 text-base focus:border-gray-500 focus:outline-none"
 			placeholder="Search"
 		/>
-		<button
-			type="submit"
-			class="border border-l-0 bg-transparent px-5 py-2 text-sm transition-colors hover:bg-gray-900 focus:outline-none"
-		>
-			Go
-		</button>
 	</div>
-	<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+	<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
 		{#each searchEngines as engine (engine.id)}
 			<div>
 				<input

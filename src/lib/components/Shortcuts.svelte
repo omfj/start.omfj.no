@@ -1,15 +1,21 @@
 <script lang="ts">
 	import { shortcuts } from '$lib/constants';
+
+	function onkeydown(e: KeyboardEvent) {
+		if (e.target instanceof HTMLInputElement) return;
+		const shortcut = shortcuts.find((s) => s.key === e.key);
+		if (shortcut) window.location.href = shortcut.url;
+	}
 </script>
 
-<ul class="grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
+<svelte:window {onkeydown} />
+
+<ul class="grid grid-cols-2 gap-x-6 gap-y-2 text-base sm:grid-cols-3">
 	{#each shortcuts as shortcut (shortcut.title)}
-		<li class="border">
+		<li class="flex items-center gap-2">
 			<!-- eslint-disable svelte/no-navigation-without-resolve -->
-			<a
-				href={shortcut.url}
-				class="block bg-transparent px-3 py-2 transition-colors hover:bg-gray-900 focus:outline-none"
-			>
+			<span class="font-mono text-xs text-gray-600">{shortcut.key}</span>
+			<a href={shortcut.url} class="text-gray-400 hover:text-gray-100 focus:outline-none">
 				{shortcut.title}
 			</a>
 		</li>

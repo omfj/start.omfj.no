@@ -25,38 +25,47 @@ export const isValidSearchEngine = (engine: string): engine is SearchEngine => {
 export const shortcuts = [
 	{
 		title: 'Proton Mail',
-		url: 'https://mail.proton.me/u/3/inbox'
+		url: 'https://mail.proton.me/u/3/inbox',
+		key: '1'
 	},
 	{
 		title: 'YouTube',
-		url: 'https://youtube.com'
+		url: 'https://youtube.com',
+		key: '2'
 	},
 	{
 		title: 'reddit',
-		url: 'https://reddit.com'
+		url: 'https://reddit.com',
+		key: '3'
 	},
 	{
 		title: 'GitHub',
-		url: 'https://github.com'
+		url: 'https://github.com',
+		key: '4'
 	},
 	{
 		title: 'Hacker News',
-		url: 'https://news.ycombinator.com'
+		url: 'https://news.ycombinator.com',
+		key: '5'
 	},
 	{
 		title: 'NRK',
-		url: 'https://nrk.no'
+		url: 'https://nrk.no',
+		key: '6'
 	},
 	{
 		title: 'The Economist',
-		url: 'https://economist.com'
+		url: 'https://economist.com',
+		key: '7'
 	},
 	{
 		title: 'VG',
-		url: 'https://vg.no'
+		url: 'https://vg.no',
+		key: '8'
 	},
 	{
-		title: 'Advent of Code',
-		url: 'https://adventofcode.com'
+		title: 'FIFA Fantasy',
+		url: 'https://play.fifa.com/fantasy/team',
+		key: '9'
 	}
 ] as const;
