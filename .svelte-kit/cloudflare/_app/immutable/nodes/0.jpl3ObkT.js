@@ -1,1 +1,0 @@
-import{F as e,_ as t,p as n,v as r}from"../chunks/CMef_VGG.js";import"../chunks/xihTtKlq.js";function i(i,a){var o=r();n(e(o),()=>a.children),t(i,o)}export{i as component};
