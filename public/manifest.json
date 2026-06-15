@@ -1,13 +1,15 @@
 {
 	"manifest_version": 2,
 	"name": "omfj | Start",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Custom new tab page",
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "start@omfj.no",
 			"data_collection_permissions": {
-				"required": ["none"],
+				"required": [
+					"none"
+				],
 				"optional": []
 			}
 		}
@@ -22,3 +24,4 @@
 		"128": "android-chrome-192x192.png"
 	}
 }
+
