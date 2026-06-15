@@ -1,6 +1,10 @@
 const searchEngines = [
-  { id: "duckduckgo", title: "DuckDuckGo", searchUrl: "https://duckduckgo.com/?q=" },
   { id: "google", title: "Google", searchUrl: "https://google.com/search?q=" },
+  {
+    id: "duckduckgo",
+    title: "DuckDuckGo",
+    searchUrl: "https://duckduckgo.com/?q=",
+  },
   { id: "bing", title: "Bing", searchUrl: "https://bing.com/search?q=" },
 ];
 
@@ -13,10 +17,27 @@ const shortcuts = [
   { title: "NRK", url: "https://nrk.no", key: "6" },
   { title: "The Economist", url: "https://economist.com", key: "7" },
   { title: "VG", url: "https://vg.no", key: "8" },
-  { title: "FIFA Fantasy", url: "https://play.fifa.com/fantasy/team", key: "9" },
+  {
+    title: "FIFA Fantasy",
+    url: "https://play.fifa.com/fantasy/team",
+    key: "9",
+  },
 ];
 
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 function pad(n) {
   return String(n).padStart(2, "0");
@@ -43,17 +64,20 @@ updateClock();
 setInterval(updateClock, 1000);
 
 // Search engines
-let selectedEngine = "duckduckgo";
+let selectedEngine = "google";
 const engineList = document.getElementById("engine-list");
 
 searchEngines.forEach((engine) => {
   const btn = document.createElement("button");
   btn.type = "button";
   btn.textContent = engine.title;
-  btn.className = "engine-btn" + (engine.id === selectedEngine ? " active" : "");
+  btn.className =
+    "engine-btn" + (engine.id === selectedEngine ? " active" : "");
   btn.addEventListener("click", () => {
     selectedEngine = engine.id;
-    document.querySelectorAll(".engine-btn").forEach((b) => b.classList.remove("active"));
+    document
+      .querySelectorAll(".engine-btn")
+      .forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
   });
   engineList.appendChild(btn);
