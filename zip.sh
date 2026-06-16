@@ -1,3 +1,8 @@
 #!/bin/bash
 
-rm extension.zip && cd public && zip -r ../extension.zip . && cd ..
+if [ -f extension.zip ]; then
+    rm extension.zip
+fi
+
+cd public && zip -r ../extension.zip . && cd ..
+
