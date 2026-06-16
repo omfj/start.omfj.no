@@ -64,7 +64,7 @@ updateClock();
 setInterval(updateClock, 1000);
 
 // Search engines
-let selectedEngine = "google";
+let selectedEngine = window.localStorage.getItem("searchEngine") ?? "google";
 const engineList = document.getElementById("engine-list");
 
 searchEngines.forEach((engine) => {
@@ -75,6 +75,7 @@ searchEngines.forEach((engine) => {
     "engine-btn" + (engine.id === selectedEngine ? " active" : "");
   btn.addEventListener("click", () => {
     selectedEngine = engine.id;
+    window.localStorage.setItem("searchEngine", engine.id);
     document
       .querySelectorAll(".engine-btn")
       .forEach((b) => b.classList.remove("active"));
